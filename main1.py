@@ -71,10 +71,15 @@ def player_turn(player,deck):
 
 
 def dealer_turn(dealer,deck):
+    print("Dealer's Hand is...")
+    for card in dealer.hand:
+        print(card.number, card.suit)
     if dealer.score() < 17:
         dealer.hand.append(deal(deck))
+        print(dealer.hand[-1].number,dealer.hand[-1].suit)
     else:
         pass
+
 
 def deal(deck):
     deal = deck.deck.pop()
@@ -107,8 +112,7 @@ def game():
 
     players = [player,dealer]
 
-    print("Welcome to Black Jack! Place your bet.")
-    bet = int(input("How much would you like to bet? "))
+    print("Welcome to Black Jack! Here is your hand.")
     for people in players:
         for x in range(2):
             people.hand.append(deal(deck))
@@ -122,7 +126,6 @@ def game():
     print (dealer.hand[0].number, dealer.hand[0].suit)
     player_turn(player,deck)
     dealer_turn(dealer,deck)
-    
     if player.points > dealer.points:
         print("You Win")
     elif dealer.points > player.points:
